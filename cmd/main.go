@@ -28,7 +28,7 @@ func main() {
 
 	fmt.Println("Successfully connected to the database!")
 
-	server := api.NewAPIServer(":3000", nil)
+	server := api.NewAPIServer(":3000", conn)
 
 	if err := server.Run(); err != nil {
 		log.Fatal(err)

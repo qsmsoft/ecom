@@ -1,8 +1,11 @@
 package config
 
 import (
+	"log"
 	"os"
 	"strconv"
+
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -17,6 +20,12 @@ type Config struct {
 var Envs = initConfig()
 
 func initConfig() Config {
+
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
 	port, _ := strconv.Atoi(getEnv("DB_PORT", "5432"))
 
 	return Config{
